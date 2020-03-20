@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  background:lightgray;
+}
+
+form:focus {
+  box-shadow: none;
+}
+
+form{
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+.form-wrapper{
+    width:25%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .btn-custom {
+    background:rgb(0,130,182);
+    transition-property: background !important;
+    transition: 0.35s cubic-bezier(.59,-0.39,.42,1.14) !important;
+  
+  }
+  .btn-custom:hover {
+    background:rgb(130,190,66) ; 
+  }
+  
+  
+  .input-username
+  .input-password{
+    border:transparent;
+    transition-property: border !important;
+    transition: 0.5s cubic-bezier(.59,-0.39,.42,1.14) !important;
+  }
+  .input-username:hover {
+    border: 1px solid rgb(0,130,182);
+  }
+  .input-password:hover{
+    border: 1px solid rgb(0,130,182);
+  }
+  
+  #form-wrapper {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+  }
+  
+  @keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+  }
+  @-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+  }
+  @-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+  }
+  @-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+  }
