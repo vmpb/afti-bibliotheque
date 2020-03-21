@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+{% block css %}     
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('css/login.css')}}">
+{% endblock %}
+{% block body %}
+<div id="form-wrapper" class="form-wrapper login">
+    <h1 class="text-center"> Formulaire d'inscription à la bibliothèque </h1><hr><br>
+    {{form_start(form)}}
+    <div class="row">
+        <div class="col-md-6">
+            {{form_row(form.firstName)}}
+        </div>
+        <div class="col-md-6">
+            {{form_row(form.lastName)}}
+        </div>
+    </div>
+    {{form_row(form.username)}}
+    {{form_row(form.password)}}
+    <div class="row btn btn-block">
+        {{form_row(form.Submit)}}
+    </div>
+    {{form_end(form)}}
+</div>
+{% endblock %}

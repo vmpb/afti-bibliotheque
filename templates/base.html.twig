@@ -4,24 +4,27 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Bibliotheque AFTI - 
+		<title>BAFTI - 
 			{% block title %}{% endblock %}
 		</title>
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link rel="stylesheet" href="{{ asset('css/style.css')}}">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+		{% block css %}
+			<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+			<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+			<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+			<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+		{% endblock %}
 	</head>
 	<body>
 		<div class="wrapper">
 			<nav id="sidebar">
 				<div class="sidebar-header">
-					<img height="27">
+					<img src="{{ asset('img/afti.png')}}" height="27">
 				</div>
 				<ul class="list-unstyled components">
 					<p>Navigation</p>
+					<br>
 					<li>
-						<a href="#">Accueil</a>
+						<a href="{{path('home')}}">Accueil</a>
 					</li>
 					<li>
 						<a href="#machineSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ouvrages</a>
@@ -61,11 +64,26 @@
 						<a href="#">Contact</a>
 					</li>
 				</ul>
+
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				<ul class="list-unstyled CTAs">
 					<li>
 						<a href="{{path('app_logout')}}" class="btn btn-danger">Deconnexion</a>
 					</li>
 				</ul>
+				{% endif %}
+
+				{% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+					<div class="row">
+						<div class="col-md-6">
+							<a href="{{path('app_login')}}" class="btn btn-primary btn-block"> Connexion </a>
+						</div>
+						<div class="col-md-6">
+							<a href="{{path('app_register')}}" class="btn btn-success btn-block"> Inscription </a>
+						</div>
+					</div>
+				{% endif %}
+
 			</nav>
 			<!-- Page Content Holder -->
 			<div id="content">

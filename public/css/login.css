@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-body {
-  background:lightgray;
-}
+
 
 form:focus {
   box-shadow: none;
@@ -17,7 +15,7 @@ form{
 
 
 .form-wrapper{
-    width:25%;
+    width:30%;
     margin: 0;
     position: absolute;
     top: 50%;
