@@ -7,7 +7,10 @@
 {% endblock %}
 {% block body %}
 <div id="form-wrapper" class="form-wrapper login">
-    <h1 class="text-center"> Formulaire d'inscription à la bibliothèque </h1><hr><br>
+    <div class="img-in-h1 text-center">
+        <img class="logo-ccur img-fluid" src="{{ asset('img/afti.png')}}">
+        <h1 style="font-size:1.5vw;" class="display-4 text-center text-dark">Bibliothèque - Register</h1><hr><br>
+    </div>
     {{form_start(form)}}
     <div class="row">
         <div class="col-md-6">
@@ -23,5 +26,10 @@
         {{form_row(form.Submit)}}
     </div>
     {{form_end(form)}}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <a href="{{path('app_login')}}"> J'ai déjà un compte</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
