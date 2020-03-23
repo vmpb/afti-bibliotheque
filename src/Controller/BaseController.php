@@ -8,6 +8,7 @@ use App\Form\ReservationType;
 use App\Form\ReservationType2;
 use App\Repository\ArticleRepository;
 use App\Repository\ReservationRepository;
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -112,10 +113,12 @@ class BaseController extends AbstractController
      * @Route("/reservation/{id}/delete", name="reservation_delete")
      */
     public function deleteUserReservation(Reservation $reservation)  {
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($reservation);
         $em->flush();
-        return $this->redirectToRoute('userReservations');   
+        return $this->redirectToRoute('userReservations');
+    
     }
 
 

@@ -36,6 +36,16 @@ class Reservation
      */
     private $startAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $returned;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $returnedAt;
+
 
 
     public function getId(): ?int
@@ -87,6 +97,30 @@ class Reservation
     public function setStartAt(\DateTimeInterface $startAt): self
     {
         $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    public function getReturned(): ?bool
+    {
+        return $this->returned;
+    }
+
+    public function setReturned(bool $returned): self
+    {
+        $this->returned = $returned;
+
+        return $this;
+    }
+
+    public function getReturnedAt(): ?\DateTimeInterface
+    {
+        return $this->returnedAt;
+    }
+
+    public function setReturnedAt(?\DateTimeInterface $returnedAt): self
+    {
+        $this->returnedAt = $returnedAt;
 
         return $this;
     }
