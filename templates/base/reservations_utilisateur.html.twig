@@ -20,14 +20,13 @@
         <tbody>
             {% for r in reservations %}
             <tr>
-                
                 <td>{{r.article.title }}</td>
                 <td>{{r.article.author }}</td>
                 <td>{{r.startAt | date('d-m-Y')}} </td>
                 <td>{{r.endAt | date('d-m-Y')}} </td>
                 <td>
-                    <a href="{{ path('article_show', {'id': r.article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': r.article.id}) }}">delete</a>
+                    <a href="{{ path('show_article', {'id': r.article.id}) }}">show</a>
+                    <a href="{{ path('reservation_delete', {'id': r.article.id}) }}">delete</a>
                 </td>
             </tr>
             {% endfor %}

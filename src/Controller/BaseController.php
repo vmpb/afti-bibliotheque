@@ -108,6 +108,16 @@ class BaseController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/reservation/{id}/delete", name="reservation_delete")
+     */
+    public function deleteUserReservation(Reservation $reservation)  {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reservation);
+        $em->flush();
+        return $this->redirectToRoute('userReservations');   
+    }
+
 
     /**
      * @Route("/mesreservations", name="userReservations")
