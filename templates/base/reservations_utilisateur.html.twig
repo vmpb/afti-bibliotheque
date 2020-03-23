@@ -21,8 +21,8 @@
             {% for r in reservations %}
             <tr>
                 
-                <td>{{ r.article.title }}</td>
-                <td>{{ r.article.author }}</td>
+                <td>{{r.article.title }}</td>
+                <td>{{r.article.author }}</td>
                 <td>{{r.startAt | date('d-m-Y')}} </td>
                 <td>{{r.endAt | date('d-m-Y')}} </td>
                 <td>
