@@ -41,6 +41,7 @@ class Article
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     public function getId(): ?int
@@ -113,5 +114,9 @@ class Article
         }
 
         return $this;
+    }
+ 
+    public function __toString() {
+        return $this->title;
     }
 }

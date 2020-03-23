@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block title %} Mes réservations{% endblock %}
+{% block body %}
+ <h1> Mes réservations </h1><hr><br>
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th colspan="2">Article </th>
+                <th colspan="2">Reservations </th>
+                <th colspan="2">Actions</th>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Début de la réservation</th>
+                <th>Fin de la réservation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in reservations %}
+            <tr>
+                
+                <td>{{ r.article.title }}</td>
+                <td>{{ r.article.author }}</td>
+                <td>{{r.startAt | date('d-m-Y')}} </td>
+                <td>{{r.endAt | date('d-m-Y')}} </td>
+                <td>
+                    <a href="{{ path('article_show', {'id': r.article.id}) }}">show</a>
+                    <a href="{{ path('article_edit', {'id': r.article.id}) }}">delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

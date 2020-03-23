@@ -10,6 +10,7 @@
 		{% block css %}
 			<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 			<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+			<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 			<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 			<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 		{% endblock %}
@@ -27,16 +28,24 @@
 						<a href="{{path('home')}}">Accueil</a>
 					</li>
 					<li>
-						<a href="#machineSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ouvrages</a>
-						<ul class="collapse list-unstyled" id="machineSubmenu">
+						<a href="#ouvragesMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ouvrages</a>
+						<ul class="collapse list-unstyled" id="ouvragesMenu">
 							<li>
-								<a href="#">Tous les ouvrages</a>
+								<a href="{{path('all_articles')}}">Tous les ouvrages</a>
 							</li>
+							<li>
+								<a href="#">Rechercher un ouvrage</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#reservationMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Réservations</a>
+						<ul class="collapse list-unstyled" id="reservationMenu">
 							<li>
 								<a href="#">Réserver un ouvrage</a>
 							</li>
 							<li>
-								<a href="#">Rechercher un ouvrage</a>
+								<a href="{{path('userReservations')}}">Mes réservations</a>
 							</li>
 						</ul>
 					</li>
@@ -45,10 +54,21 @@
 						<a href="#clientSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" href="#">Gestion des utilisateurs</a>
 						<ul class="collapse list-unstyled" id="clientSubmenu">
 							<li>
-								<a href="#">Tous les utilisateurs</a>
+								<a href="{{path('user_index')}}">Tous les utilisateurs</a>
 							</li>
 							<li>
-								<a href="#">Ajouter un utilisateur</a>
+								<a href="{{path('user_new')}}">Ajouter un utilisateur</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#articleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" href="#">Gestion des articles</a>
+						<ul class="collapse list-unstyled" id="articleSubmenu">
+							<li>
+								<a href="{{path('article_index')}}">Tous les articles</a>
+							</li>
+							<li>
+								<a href="{{path('article_new')}}">Ajouter un article</a>
 							</li>
 						</ul>
 					</li>
@@ -109,9 +129,27 @@
 						</div>
 					</div>
 				</nav>
-				<div class="container"> {% block body %}{% endblock %}</div>
+				<div class="container"> 
+					{% for message in app.flashes('success') %}
+					<div class="row m-4">
+						<div class="col-md-6 offset-md-3 text-center alert-success">
+							{{message}}
+						</div>
+					</div>
+					{% endfor %}
+					{% for message in app.flashes('error') %}
+						<div class="row m-4">
+							<div class="col-md-6 offset-md-3 text-center alert-danger">
+								{{message}}
+							</div>
+						</div>
+					{% endfor %}
+					{% block body %}
+					{% endblock %}
+				</div>
 			</div>
 			<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 			<script type="text/javascript">
