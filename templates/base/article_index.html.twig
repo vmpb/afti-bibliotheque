@@ -5,13 +5,13 @@
 {% block body %}
 
     <h1>Article index</h1><hr><br>
-    <table class="table">
+    <table class="table text-center">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Stock</th>    
-                <th>actions</th>
+                <th colspan="2">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,8 +21,12 @@
                 <td>{{ article.author }}</td>
                 <td>{{ article.stock }}</td>
                 <td>
-                    <a href="{{ path('show_article', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('show_article', {'id': article.id}) }}">voir</a>
                 </td>
+                <td>
+                    <a href="{{ path('reservation_article_connu', {'id': article.id}) }}">réserver</a>
+                </td>
+
             </tr>
         {% else %}
             <tr>

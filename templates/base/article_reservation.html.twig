@@ -3,6 +3,17 @@
 {% block title %} Réservation {% endblock %}
 
 {% block body %}
-<h1> Réservation de l'article {{article.title}} </h1>
-{{form(form)}}
+<h1> Réservation de l'article {{article.title}} </h1><hr><br>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Titre : {{article.title}} </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Stock : {{article.stock}}</h6>
+                <p class="card-text"> {{article.description}} </p>
+                {{form(form)}}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

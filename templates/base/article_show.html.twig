@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Article</h1>
+    
     <table class="table">
         <tbody>
             <tr>
@@ -18,9 +19,14 @@
                 <th>Author</th>
                 <td>{{ article.author }}</td>
             </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ article.description }}</td>
+            </tr>
+            
         </tbody>
     </table>
     <a href="{{ path('all_articles') }}">back to list</a>
-    <a href="{{path('reservation_article_connu', {'id': article.id})}}"> Réserver cet article </a>
+    <a href="{{path('reservation_article_connu', {'id': article.id})}}"> Réserver </a>
 
 {% endblock %}

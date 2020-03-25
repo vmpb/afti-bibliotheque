@@ -26,7 +26,7 @@
                 <td>{{r.endAt | date('d-m-Y')}} </td>
                 <td>
                     <a href="{{ path('show_article', {'id': r.article.id}) }}">show</a>
-                    <a href="{{ path('reservation_delete', {'id': r.article.id}) }}">delete</a>
+                    <a href="{{ path('reservation_delete', {'id': r.id}) }}">delete</a>
                 </td>
             </tr>
             {% endfor %}

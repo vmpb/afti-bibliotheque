@@ -48,6 +48,7 @@ class BaseController extends AbstractController
             'articles' => $searchedArticles
         ]);
     }
+
     
     /**
      * @Route("/article/{id}", name="show_article", methods={"GET"})
@@ -59,7 +60,7 @@ class BaseController extends AbstractController
         ]);
     }
 
-    /**
+     /**
      * @Route("/article/{id}/reservation", name="reservation_article_connu")
      */
 
@@ -69,8 +70,9 @@ class BaseController extends AbstractController
         $form = $this->createForm(ReservationType2::class, $reservation);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            if($reservation->getStartAt() <= $reservation->getEndAt()) {
+            if($reservation->getStartAt() < $reservation->getEndAt()) {
                 $reservation->setReservedBy($this->getUser());
+                $reservation->setReturned(false);
                 $reservation->setArticle($article);
                 $em->persist($reservation);
                 $em->flush();
@@ -85,53 +87,8 @@ class BaseController extends AbstractController
         ]);   
     }
 
-    /**
-     * @Route("/reservation", name="reservation")
-     */
-    public function userReservation(Request $request) : Response
-    {
-        $em = $this->getDoctrine()->getManager();
-        $reservation = new Reservation();
-        $form = $this->createForm(ReservationType::class, $reservation);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            if($reservation->getStartAt() < $reservation->getEndAt()) {
-                $reservation->setReservedBy($this->getUser());
-                $em->persist($reservation);
-                $em->flush();
-                return $this->redirectToRoute('home');
-            } else {
-                $this->addFlash('error','Problème');
-            }
-        }   
-        return $this->render('base/reservation.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/reservation/{id}/delete", name="reservation_delete")
-     */
-    public function deleteUserReservation(Reservation $reservation)  {
-
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($reservation);
-        $em->flush();
-        return $this->redirectToRoute('userReservations');
-    
-    }
 
 
-    /**
-     * @Route("/mesreservations", name="userReservations")
-     */
-    public function getUserReservations(ReservationRepository $rr) : Response
-    {
-        $user = $this->getUser();
-        $reservations = $rr->findReservationByUser($user);
-        return $this->render('base/reservations_utilisateur.html.twig', [
-            'reservations' => $reservations,
-        ]);
-    }
+
 
 }
