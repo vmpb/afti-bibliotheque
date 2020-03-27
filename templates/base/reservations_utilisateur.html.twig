@@ -25,8 +25,8 @@
                 <td>{{r.startAt | date('d-m-Y')}} </td>
                 <td>{{r.endAt | date('d-m-Y')}} </td>
                 <td>
-                    <a href="{{ path('show_article', {'id': r.article.id}) }}">show</a>
-                    <a href="{{ path('reservation_delete', {'id': r.id}) }}">delete</a>
+                    <a class="btn btn-primary" href="{{ path('show_article', {'id': r.article.id}) }}">show</a>
+                    <a class="btn btn-danger" href="{{ path('reservation_delete', {'id': r.id}) }}">delete</a>
                 </td>
             </tr>
             {% endfor %}

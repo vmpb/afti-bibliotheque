@@ -26,7 +26,7 @@
             
         </tbody>
     </table>
-    <a href="{{ path('all_articles') }}">back to list</a>
-    <a href="{{path('reservation_article_connu', {'id': article.id})}}"> Réserver </a>
+    <a class="btn btn-secondary" href="{{ path('all_articles') }}">back to list</a>
+    <a class="btn btn-success" href="{{path('reservation_article_connu', {'id': article.id})}}"> Réserver </a>
 
 {% endblock %}
